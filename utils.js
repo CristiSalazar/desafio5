@@ -2,6 +2,7 @@ import path from "path"
 import { fileURLToPath } from "url"
 import passport from "passport"
 import nodemailer from 'nodemailer'
+import {faker} from "@faker-js/faker"
 
 export const passportCall = (strategy) => {
     return async(req, res, next)=>{
@@ -33,5 +34,21 @@ export const transport= nodemailer.createTransport({
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
+
+//Mock
+
+faker.location = "es"
+
+export const generateProduct = () => {
+    let numOfProducts = 100
+    let products = []
+    for (let i = 0; i < numOfProducts; i++){
+        products.push(generateProducts)
+    }
+    return {
+        description:faker.commerce.productDescription(),
+        price: faker.commerce.price({ min: 100, max: 200 }),
+    }
+}
 
 export default __dirname

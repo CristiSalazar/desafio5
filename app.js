@@ -153,28 +153,3 @@ app.get('/admin',passportCall('jwt'), authorization('user'),(req,res) =>{
         res.render('admin', { products: prodAll });
     });
 })
-//-----------------------------------Mocking--------------------------------//
-function getRandomNumber(min, max) {
-    return Math.floor(Math.random() * (max - min + 1) + min);
-}
-app.get("/mockingproducts", async(req,res)=>{
-
-    const products = [];
-
-    for (let i = 0; i < 50; i++) {
-        const product = {
-            id: nanoid(),
-            description: `Product ${i + 1}`,
-            image: 'https://example.com/image.jpg',
-            price: getRandomNumber(1, 1000),
-            stock: getRandomNumber(1, 100),
-            category: `Category ${i % 5 + 1}`,
-            availability: 'in_stock'
-        };
-
-        products.push(product);
-    }
-
-    res.send(products);
-})
-//-------------------------------------Mocking-----------------------------//
